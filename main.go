@@ -193,7 +193,7 @@ func gitCheckout(id, url, branch, token string) error {
 
 func codeCheck(checkRun *github.CheckRun, repoName, token string) error {
 	fmt.Println("checking code smells")
-	args := []string{"--color=always", "--exclude-use-default=false", "--print-linter-name", "-E=govet", "-E=golint", "-E=asciicheck", "-E=bodyclose", "-E=dupl", "-E=gocognit", "-E=gocyclo", "-E=goerr113", "-E=deadcode", "", "-E=gomnd", "-E=gosec", "-E=misspell", "-E=nestif", "-E=rowserrcheck", "-E=unconvert", "-E=unparam", "-E=whitespace", "-E=goconst", "run", "./..."}
+	args := []string{"--color=always", "--exclude-use-default=false", "--print-linter-name", "-E=govet", "-E=golint", "-E=asciicheck", "-E=bodyclose", "-E=dupl", "-E=gocognit", "-E=gocyclo", "-E=goerr113", "-E=deadcode", "-E=gomnd", "-E=gosec", "-E=misspell", "-E=nestif", "-E=rowserrcheck", "-E=unconvert", "-E=unparam", "-E=whitespace", "-E=goconst", "run", "./..."}
 	path := "/tmp/checks/" + checkRun.GetHeadSHA() + "/" + repoName
 
 	cmd := exec.Command("golangci-lint", args...)
