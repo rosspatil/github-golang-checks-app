@@ -19,10 +19,16 @@ import (
 	"github.com/google/go-github/v31/github"
 )
 
+var key = `
+`
+
 func main() {
 	g := gin.New()
 
 	g.POST("/api/github/hook", githubPRHook)
+	g.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"message": "server is up and running"})
+	})
 
 	g.Run(":8080")
 }
@@ -74,7 +80,15 @@ func createToken() *github.InstallationToken {
 	claims["exp"] = t.Add(time.Minute * 1).Unix()
 	claims["iss"] = 67112
 	token := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
-	ba, err := ioutil.ReadFile("key.pem")
+	// key := os.Getenv("key")
+	// var err error
+	// var ba []byte
+	// if key == "" {
+	// 	ba, err = ioutil.ReadFile("key.pem")
+	// } else {
+	ba := []byte(key)
+	// }
+	fmt.Println(string(ba))
 	k, err := jwt.ParseRSAPrivateKeyFromPEM(ba)
 	if err != nil {
 		log.Fatal(err)
