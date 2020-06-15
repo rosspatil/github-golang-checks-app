@@ -4,7 +4,7 @@ This is a github app to check and ensure the code quality of your golang applica
 
 Install golang-code-quality-check app on your repositories using below link 
 
-<b> https://github.com/apps/golang-code-quality-check <b>
+<b> https://github.com/apps/golang-code-quality-check/installations/new <b>
 
 ## This checks the various aspects of your golang application code -
 
